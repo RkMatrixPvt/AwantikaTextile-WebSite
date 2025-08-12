@@ -140,39 +140,60 @@
         </div>
     </section>
 
-
     <section id="services" class="section services">
         <h2>Our Products</h2>
         <div class="service-grid">
             <div class="card">
-                <i class="fas fa-user-graduate"></i>
+                <div class="card-image">
+                    <img src="images/services/1.webp" alt="College Uniforms">
+                    <div class="icon-overlay">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                </div>
                 <h3>College Uniforms</h3>
                 <p>Custom-designed uniforms for students that blend comfort, durability, and identity.</p>
             </div>
-
             <div class="card">
-                <i class="fas fa-shield-alt"></i>
+                <div class="card-image">
+                    <img src="images/services/2.webp" alt="Security Guard Uniforms">
+                    <div class="icon-overlay">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                </div>
                 <h3>Security Guard Uniforms</h3>
                 <p>Strong and professional attire tailored for security personnel with durable fabrics.</p>
             </div>
-
             <div class="card">
-                <i class="fas fa-concierge-bell"></i>
+                <div class="card-image">
+                    <img src="images/services/3.webp" alt="Security Guard Uniforms">
+                    <div class="icon-overlay">
+                        <i class="fas fa-concierge-bell"></i>
+                    </div>
+                </div>
                 <h3>Hospitality Uniforms</h3>
                 <p>Elegant and practical uniforms for waiters, front desk, and service staff across industries.</p>
             </div>
-
             <div class="card">
-                <i class="fas fa-user-nurse"></i>
+                <div class="card-image">
+                    <img src="images/services/4.jpg" alt="Security Guard Uniforms">
+                    <div class="icon-overlay">
+                        <i class="fas fa-user-nurse"></i>
+                    </div>
+                </div>
                 <h3>Medical Uniforms</h3>
                 <p>Comfortable, hygienic, and practical uniforms for doctors, nurses, and healthcare staff.</p>
             </div>
-
             <div class="card">
-                <i class="fas fa-users-cog"></i>
+                <div class="card-image">
+                    <img src="images/services/5.webp" alt="Security Guard Uniforms">
+                    <div class="icon-overlay">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                </div>
                 <h3>Scout & NCC Uniforms</h3>
                 <p>Standard-compliant uniforms designed for discipline, pride, and outdoor readiness.</p>
             </div>
+
         </div>
     </section>
 
@@ -197,24 +218,25 @@
         <div class="contact-container">
             <!-- Left: Contact Form -->
             <div class="contact-form">
-                <form>
+                <form id="emailForm">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" id="name" placeholder="Your Name" required />
+                        <input type="text" id="name" name="Name" placeholder="Your Name" autocomplete="off" required />
                     </div>
                     <div class="form-group">
                         <label for="email">Phone No.</label>
-                        <input type="text" id="phone" placeholder="Your Phone Number" required />
+                        <input type="text" name="Phone" id="phone" placeholder="Your Phone Number" autocomplete="off" required />
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="Your Email" required />
+                        <input type="email" name="Email" id="email" placeholder="Your Email" autocomplete="off" required />
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+                        <textarea id="message" name="Message" rows="5" placeholder="Your Message" required></textarea>
                     </div>
-                    <button type="submit">Send Message</button>
+                    <button id="submitBtn" type="submit">Send Message</button>
+                    <div id="formMessage" style="margin-top: 15px; display: none; padding: 10px; border-radius: 5px;"></div>
                 </form>
             </div>
 
@@ -233,12 +255,23 @@
     </section>
 
     <footer>
-        &copy; 2025 Awantika Textile. All rights reserved.
+        <div class="footer-content">
+            <p>&copy; 2025 Awantika Textile. All rights reserved.</p>
+            <div class="developer-brand">
+                <span>Website developed by</span>
+                <a href="https://www.rkmatrix.co.in/" target="_blank" class="blink-link">
+                    RKMatrix–Software Solutions (<span class="url-text">www.rkmatrix.co.in</span>)
+                </a>
+            </div>
+        </div>
     </footer>
 
-    <a class="whatsapp-float" href="https://wa.me/917310329910" target="_blank" aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+
+    <div class="whatsapp-float">
+        <a href="https://wa.me/917310329910" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
 
     <script>
         function toggleMenu() {
@@ -275,6 +308,98 @@
         sections.forEach(section => {
             observer.observe(section);
         });
+
+
+        const submitBtn = document.getElementById("submitBtn");
+
+        document.getElementById("emailForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const form = e.target;
+            const name = form.Name.value;
+            const email = form.Email.value;
+            const phone = form.Phone.value;
+            const message = form.Message.value;
+            const date = new Date().toLocaleString();
+            const to = 'awantikatextile@gmail.com';
+            const subject = `New Contact Form Submission from ${name} – ${date} – Awantika Textile`;
+            // Build your HTML message
+            const htmlBody = `<!DOCTYPE html>
+                                                                                           <html>
+                                                                                             <head>
+                                                                                               <style>
+                                                                                                 .box {
+                                                                                                   border: 2px solid #4CAF50;
+                                                                                                   padding: 20px;
+                                                                                                   font-family: Arial;
+                                                                                                   border-radius: 10px;
+                                                                                                   background: #f9f9f9;
+                                                                                                 }
+                                                                                                 h1 {
+                                                                                                   color: #4CAF50;
+                                                                                                 }
+                                                                                                 p {
+                                                                                                   font-size: 16px;
+                                                                                                   color: #333;
+                                                                                                   margin: 6px 0;
+                                                                                                 }
+                                                                                               </style>
+                                                                                             </head>
+                                                                                             <body>
+                                                                                               <div class="box">
+                                                                                                 <h1>📩 New Inquiry Received</h1>
+                                                                                                 <p><strong>Name:</strong> ${name}</p>
+                                                                                                 <p><strong>Email:</strong> ${email}</p>
+                                                                                                 <p><strong>Phone:</strong> ${phone}</p>
+                                                                                                 <p><strong>Message:</strong></p>
+                                                                                                 <p>${message}</p>
+                                                                                                 <p><strong>Date:</strong> ${date}</p>
+                                                                                                 <hr>
+                                                                                                 <p>This message was submitted via the  Awantika Textile Contact Us page.</p>
+                                                                                               </div>
+                                                                                             </body>
+                                                                                           </html>`;
+
+            // Encode for safe transmission
+            const body = encodeURIComponent(htmlBody);
+            const formData = `to=${to}&subject=${subject}&body=${body}`;
+            const messageEl = document.getElementById("formMessage");
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Sending...";
+            try {
+                const res = await fetch("https://script.google.com/macros/s/AKfycbxl70xI0JrM_7pGOiI_HHlhxLg8ttOYqUu835zyFwB4gTt2agKwpeRmf035TpkB4e95/exec", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: formData
+                });
+
+                const text = await res.text();
+                // ✅ Show success message
+                messageEl.innerHTML = "<strong>Awantika Textile appreciates your interest! 🌟</strong> We’ve received your inquiry and will get back to you soon with smart and stylish solutions."
+                messageEl.style.backgroundColor = "#4caf50";
+                messageEl.style.color = "#fff";
+                messageEl.style.display = "block";
+
+                form.reset(); // optional: clear form
+            } catch (err) {
+                // ❌ Show error message
+                messageEl.innerHTML = "❌ Oops! Something went wrong.Please try again later.\n\n📞 You can also contact Awantika Textile directly: \n 📧 Email: awantikatextile@gmail.com\n📱 Phone: +91-7310329910";
+                messageEl.style.backgroundColor = "#e53935";
+                messageEl.style.color = "#fff";
+                messageEl.style.display = "block";
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Send Message";
+            }
+
+            // Auto-hide after 6 seconds (optional)
+            setTimeout(() => {
+                messageEl.style.display = "none";
+            }, 6000);
+        });
+
+
     </script>
 </body>
 </html>
